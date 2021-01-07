@@ -11,7 +11,7 @@ assert flutterSdkPath != null, "flutter.sdk not set in local.properties"
 apply from: "$flutterSdkPath/packages/flutter_tools/gradle/app_plugin_loader.gradle"
 
 
-
+//以下、「Plugin project :firebase_core_web not found. Please update settings.gradle.」が発生するため、解決策として追加
 def flutterProjectRoot = rootProject.projectDir.parentFile.toPath()
 
 def plugins = new Properties()
@@ -25,3 +25,4 @@ plugins.each { name, path ->
     include ":$name"
     project(":$name").projectDir = pluginDirectory
 }
+
