@@ -1,4 +1,4 @@
-import 'package:coriander/book_list_model.dart';
+import 'book_list_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
