@@ -1,3 +1,5 @@
+import 'package:coriander/add_book/add_book_page.dart';
+
 import 'book_list_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -13,13 +15,30 @@ class BookListPage extends StatelessWidget {
         ),
         body: Consumer<BookListModel>(builder: (context, model, child) {
           final books = model.books;
-          final listTils = books.map((book) => ListTile(
-                title: Text(book.title),
-              )).toList();
+          final listTils = books
+              .map((book) => ListTile(
+                    title: Text(book.title),
+                  ))
+              .toList();
           return ListView(
             children: listTils,
           );
         }),
+        floatingActionButton: Consumer<BookListModel>(builder: (context, model, child) {
+            return FloatingActionButton(
+              child: Icon(Icons.add),
+              onPressed: () async{
+                await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AddBookPage(),
+                  ),
+                );
+                model.fetchBooks();
+              },
+            );
+          }
+        ),
       ),
     );
   }
